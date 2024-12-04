@@ -53,7 +53,7 @@ class pulse():
             pass
 
     #Returns the field as a function of time
-    def time_dependant_field_fft(self, num_intervals: int = int(1e3)):
+    def time_dependant_field(self, num_intervals: int = int(1e3)):
         w_range = (self.w0 - 5*self.spec_width, self.w0 + 5*self.spec_width)
         signal_fn = lambda w: self.spectrum(w)*self.chirp(w)*self.notch(w)
 
