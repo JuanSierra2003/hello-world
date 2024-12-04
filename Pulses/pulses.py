@@ -13,9 +13,9 @@ def gaussian(x:float, mu:float, sigma:float):
 def lorentzian(x:float, x0:float, tau:float):
     return (1+((x- x0)/tau)**2)**-1
 
-def square(x: float, x0: float, delta: float, smoothness: float = .5):
-    left_edge = 1 / (1 + np.exp(-(x - (x0 - delta))/smoothness))
-    right_edge = 1 / (1 + np.exp((x - (x0 + delta))/smoothness))
+def square(x: float, x0: float, delta: float, smoothness: float = .1):
+    left_edge = 1 / (1 + np.exp(-(x - (x0 - delta))/(delta*(smoothness))))
+    right_edge = 1 / (1 + np.exp((x - (x0 + delta))/(delta*(smoothness))))
     return left_edge*right_edge
 
 def sech(x:float, x0:float, tau):
