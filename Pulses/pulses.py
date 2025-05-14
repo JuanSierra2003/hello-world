@@ -1,10 +1,14 @@
 import numpy as np
+from scipy.integrate import simpson
 
 #Inverse Fourier transform by its definition
 def inverse_fourier(w_range: tuple, signal_fn , num_intervals: int, time: float):
     w = np.linspace(*w_range, num_intervals)
     dw = w[1] - w[0]
-    return np.sum(signal_fn(w) * np.exp(-1j * w * time)) * dw
+    #return np.sum(signal_fn(w) * np.exp(-1j * w * time)) * dw
+    f = signal_fn(w) * np.exp(-1j * w * time)
+    return simpson(f, w, dw)
+
 
 #Some pulse types
 def gaussian(x:float, mu:float, sigma:float):
@@ -13,7 +17,7 @@ def gaussian(x:float, mu:float, sigma:float):
 def lorentzian(x:float, x0:float, tau:float):
     return (1+((x- x0)/tau)**2)**-1
 
-def square(x: float, x0: float, delta: float, smoothness: float = .1):
+def square(x: float, x0: float, delta: float, smoothness: float = .15):
     left_edge = 1 / (1 + np.exp(-(x - (x0 - delta))/(delta*(smoothness))))
     right_edge = 1 / (1 + np.exp((x - (x0 + delta))/(delta*(smoothness))))
     return left_edge*right_edge
