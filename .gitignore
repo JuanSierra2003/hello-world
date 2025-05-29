@@ -6,6 +6,7 @@ node_modules/
 
 # Ignore environment variable files
 .env
+key.py
 
 # Ignore build directories
 dist/
@@ -23,6 +24,7 @@ Thumbs.db
 *.bmp
 *.svg
 *.webp
+*.MOV
 
 # Ignore documents
 *.pdf
