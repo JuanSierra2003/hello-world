@@ -1,0 +1,150 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[backend=bibtex,style=numeric]{biblatex}
+\usepackage{authblk}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\addbibresource{bibliography.bib} % This will be the name of your bibliography file
+
+\title{Comportamiento de la Temperatura de Ebullición y Entalpía de Disolución de una Solución Salina}
+\author{Juan Sebastian Sierra}
+\author{Vannesa Linares}
+\author{Cristian Peña}
+\author{Aura Sofía Sandoval}
+\affil{Departamento de Física - Universidad Nacional de Colombia}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+En este informe se estudian experimentalmente dos fenómenos termodinámicos en soluciones acuosas de cloruro de sodio: el ascenso ebulloscópico y la entalpía de disolución. Se analiza cómo la adición de NaCl eleva la temperatura de ebullición del agua, en concordancia con las propiedades coligativas, y cómo la disolución del soluto produce un descenso de temperatura, evidenciando un proceso endotérmico. Los resultados experimentales muestran una relación lineal entre la concentración de sal y el aumento de la temperatura de ebullición, así como entre la cantidad de NaCl disuelta y la disminución de temperatura. Además, la entalpía molar de disolución obtenida es consistente con valores tabulados, validando el procedimiento experimental y los conceptos teóricos aplicados.
+\end{abstract}
+
+\section{Introducción}
+El estudio del comportamiento de las soluciones es un área fundamental de la física y la química, con particular interés en las propiedades coligativas, como el aumento ebulloscópico y la entalpía de disolución. El presente informe aborda dos problemas principales: el estudio del comportamiento de la temperatura de ebullición de una solución salina y la entalpía de disolución del cloruro de sodio.
+
+El primer problema se enfoca en los cambios ebulloscópicos. La adición de un soluto no volátil a un solvente puro altera su punto de ebullición. Específicamente, la presencia de sal disuelta en agua eleva su temperatura de ebullición, un fenómeno conocido como ascenso ebulloscópico. Este comportamiento se debe a que la presión de vapor de la fase líquida en equilibrio con el vapor se ve afectada por la presencia de las partículas de soluto. Para que una sustancia hierva, su presión de vapor debe ser igual o mayor que la presión externa. La ecuación de Clapeyron describe cómo la temperatura de transición (ebullición, fusión, etc.) cambia con la presión. Una simplificación de esta ecuación para la transición de líquido a vapor es la ecuación de Clausius-Clapeyron, que relaciona el cambio en el logaritmo de la presión de vapor con la entalpía de vaporización y la temperatura.
+
+El segundo problema se centra en la entalpía de disolución. Las sales iónicas tienen la propiedad de disolverse en un solvente, generalmente con desprendimiento o absorción de energía calorífica. Las reacciones donde la variación de entalpía es positiva (calor absorbido) se denominan endotérmicas, y aquellas con variación de entalpía negativa (calor cedido) se llaman exotérmicas. Si una reacción endotérmica se realiza en un sistema adiabático, la temperatura del sistema disminuye; si es exotérmica, la temperatura aumenta. Es importante destacar que el calor absorbido o liberado por mol de soluto no es una cantidad constante, sino que varía con la concentración de la disolución. Esto lleva a los conceptos de calor diferencial de disolución y calor integral de disolución. La entalpía se define como el flujo de energía térmica en procesos químicos a presión constante cuando el único trabajo es de presión-volumen ($H=U+PdV$). A presión constante, el cambio en la entalpía por unidad de masa se relaciona con el calor específico a presión constante y el cambio de temperatura: $\Delta h=c_{p}\Delta T$.
+
+Este estudio experimental tiene como objetivo principal comprender y cuantificar cómo la adición de cloruro de sodio afecta la temperatura de ebullición del agua y la variación de la temperatura en procesos de disolución, explorando las relaciones físicas y termodinámicas subyacentes.
+
+\section{Dispositivo Experimental}
+Para la realización de esta práctica, se proponen dos conjuntos de materiales, uno para cada problema planteado.
+
+\subsection{Estudio de Cambios Ebulloscópicos}
+Para estudiar el comportamiento de la temperatura de ebullición de una solución salina, se requieren los siguientes materiales:
+\begin{enumerate}
+    \item Una estufa: Para calentar la solución y llevarla a ebullición.
+    \item Un termómetro: Para medir la temperatura de la solución durante el proceso de calentamiento y ebullición. Se recomienda un termómetro con alta precisión para detectar pequeños cambios de temperatura.
+    \item Recipiente donde se preparará y calentará la solución salina.
+    \item Cloruro de sodio (NaCl): El soluto que se disolverá en agua para crear la solución salina.
+    \item Una balanza: Para medir con precisión la masa de cloruro de sodio a agregar.
+\end{enumerate}
+El montaje experimental consistirá en calentar agua en el recipiente sobre la estufa, como se muestra en la figura \ref{fig:setup}, midiendo su temperatura con el termómetro. Posteriormente, se añadirán cantidades controladas de cloruro de sodio y se registrará la nueva temperatura de ebullición.
+
+\subsection{Estudio de Entalpía de Disolución}
+Para estudiar el comportamiento de la temperatura de una solución salina en función de la masa de cloruro de sodio agregado y determinar la entalpía de disolución, se utilizarán los siguientes materiales:
+\begin{enumerate}
+    \item Un calorímetro: Esencial para medir los cambios de calor de manera aislada del entorno. Un calorímetro típico consiste en un recipiente aislado, como se muestra en la Figura \ref{fig:calorimeter}.
+    \item Un termómetro: Para medir la temperatura inicial y final del sistema dentro del calorímetro. Se busca una lectura precisa de la variación de temperatura.
+    \item Una balanza: Para medir con precisión la masa de agua y la masa de cloruro de sodio que se añadirán al calorímetro.
+    \item Cloruro de sodio (NaCl): El soluto a disolver.
+\end{enumerate}
+El procedimiento experimental implica colocar una masa conocida de agua dentro del calorímetro. Luego, se agregarán gradualmente pequeñas cantidades de NaCl, determinando su masa antes de la adición. Se registrará la temperatura del sistema antes y después de cada adición de sal para observar el comportamiento de la temperatura y calcular la entalpía de disolución. Se puede utilizar un multímetro con un termistor para mediciones precisas de temperatura, como se ilustra en la Figura \ref{fig:calorimeter}.
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{montaje.png}
+        \caption{Montaje experimental para el estudio de la temperatura de ebullición y entalpía de disolución.}
+        \label{fig:setup}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{calorímetro.png}
+        \caption{Esquema de un calorímetro con masa de agua y termómetro.}
+        \label{fig:calorimeter}
+    \end{minipage}
+\end{figure}
+
+\section{Análisis y Resultados}
+\subsection{Estudio de cambios ebulloscópicos:}
+La temperatura de ebullición del agua aumenta al disolver sal debido al fenómeno de ascenso ebulloscópico. Este fenómeno ocurre porque la presencia de partículas de soluto reduce la presión de vapor del solvente, requiriendo una mayor temperatura para alcanzar la presión externa. Este comportamiento es una manifestación de las propiedades coligativas de las soluciones, que dependen únicamente de la cantidad de partículas de soluto presentes y no de su naturaleza química. La relación entre la cantidad de soluto y el aumento de la temperatura de ebullición se describe mediante la ecuación del ascenso ebulloscópico:
+
+\[
+\Delta T_b = K_b \cdot m
+\]
+
+donde $\Delta T_b$ es el aumento en la temperatura de ebullición, $K_b$ es la constante ebulloscópica del solvente (en este caso, agua) y $m$ es la molalidad de la solución. La constante $K_b$ es una propiedad característica del solvente y depende de su naturaleza.
+
+En el experimento, se observó que la temperatura de ebullición del agua aumentaba de manera lineal con la molalidad de la solución salina, como se muestra en la Figura \ref{fig:ebullicion}. Los datos experimentales (puntos azul claro) se ajustaron a una relación lineal (línea azul discontinua), obteniendo una pendiente de $4.5(4) \ \frac{\text{°C}}{\text{mol/kg}}$.
+
+Además, los cambios en la presión parcial de la solución disminuyen con el aumento de la concentración de sal. Esto se debe a que las partículas de soluto interfieren con la evaporación del solvente, reduciendo su presión de vapor. Este comportamiento se ilustra en la Figura \ref{fig:presion_parcial}, donde los datos experimentales (puntos azul claro) muestran una disminución lineal de la presión parcial con la molalidad, ajustada por una pendiente de $-13(1) \ \frac{\text{kPa}}{\text{mol/kg}}$.
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[]{disoluciones_ebullicion.png}
+        \caption{Gráfico de la temperatura de ebullición del agua con NaCl disuelto en función de la molalidad. Se observan: como puntos azul claro, los datos experimentales y como línea azul discontinua, el ajuste lineal realizado, descrito por $\Delta T_b = 4.5(4) \ \frac{\text{°C}}{\text{mol/kg}} \times m$.}
+        \label{fig:ebullicion}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[]{disoluciones_presion_parcial.png}
+        \caption{Gráfico de la presión parcial de la solución en función de la concentración molal de NaCl. Se observan: como puntos azul claro, los datos experimentales y como línea azul discontinua, el ajuste lineal realizado, descrito por $\Delta P = -13(1) \ \frac{\text{kPa}}{\text{mol/kg}} \times m$.}
+        \label{fig:presion_parcial}
+    \end{minipage}
+\end{figure}
+
+Estos resultados confirman que el ascenso ebulloscópico es un fenómeno predecible y cuantificable, directamente relacionado con la concentración de soluto en la solución. Este comportamiento tiene aplicaciones prácticas en diversas áreas, como la determinación de masas molares de solutos desconocidos y el diseño de procesos industriales que involucran soluciones.
+
+
+\subsection{Estudio de entalpía de disolución:}
+La entalpía de disolución describe el calor absorbido o liberado cuando un soluto se disuelve en un solvente. En este experimento, se observó que al agregar NaCl al agua, la temperatura de la solución disminuye, lo que indica que el proceso de disolución es endotérmico. Esta disminución de temperatura se debe a que la energía necesaria para separar los iones del cristal de NaCl y romper las interacciones entre las moléculas de agua es mayor que la energía liberada al hidratar los iones, resultando en una absorción neta de calor del entorno.
+
+La variación de la temperatura es proporcional a la cantidad de NaCl disuelto, como se muestra en la Figura \ref{fig:temperatura}. El ajuste lineal experimental indica que por cada mol de NaCl disuelto, la temperatura disminuye aproximadamente $4.6(3)$ °C, lo que confirma la relación directa entre la cantidad de soluto y el cambio de temperatura.
+
+A partir de los datos experimentales y el ajuste mostrado en la Figura \ref{fig:entalpia}, se obtuvo una entalpía molar de disolución de $\Delta H = 3.7(2)\times 10^3$ J/mol. Este valor es consistente con el valor tabulado para la entalpía de disolución del NaCl, que es aproximadamente $3.9 \times 10^3$ J/mol a temperatura ambiente, encontrándose dentro del margen de error esperado.
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[]{disoluciones_deltaT.png}
+        \caption{Gráfico de la temperatura de la solución de agua con NaCl como función de la cantidad de NaCl disueltos en $145$ g de agua y con un calorímetro con capacidad calorífica de $44.18$ J/°C. Se observan: como puntos azul claro, los datos experimentales y como línea azul discontinua, el ajuste lineal realizado, descrito por $\Delta T = -4.6(3) \ \frac{\text{°C}}{\text{mol}} \times n$.}
+        \label{fig:temperatura}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[]{disoluciones_enthalpia.png}
+        \caption{Gráfico del cambio de la entalpía de disolución en función de la cantidad de NaCl disueltos en en $145$ g de agua y con un calorímetro con capacidad calorífica de $44.18$ J/°C. Se observan: como puntos azul claro, los datos experimentales y como línea azul discontinua, el ajuste lineal realizado, descrito por $\Delta H = 3.7(2)\times 10^3 \ \frac{\text{J}}{\text{mol}} \times n$.}
+        \label{fig:entalpia}
+    \end{minipage}
+\end{figure}
+
+Este estudio experimental muestra que la disolución de NaCl en agua es un proceso endotérmico, con una disminución de temperatura proporcional a la cantidad de sal disuelta y una entalpía molar de disolución cercana al valor tabulado.
+
+\section{Conclusiones}
+
+\begin{itemize}
+    \item En este informe se analizaron experimentalmente dos fenómenos fundamentales en el estudio de soluciones: el ascenso ebulloscópico y la entalpía de disolución del NaCl en agua. Se comprobó que la temperatura de ebullición del agua aumenta linealmente con la concentración de sal disuelta, en concordancia con la teoría de las propiedades coligativas. Asimismo, se observó que la presión de vapor disminuye con la molalidad, validando el efecto del soluto sobre el equilibrio líquido-vapor.
+
+    \item Por otro lado, el estudio de la entalpía de disolución evidenció que la disolución de NaCl en agua es un proceso endotérmico, manifestado por una disminución de la temperatura proporcional a la cantidad de sal agregada. El valor experimental obtenido para la entalpía molar de disolución fue consistente con los valores tabulados, lo que respalda la validez del procedimiento experimental.
+
+    \item Estos resultados permiten comprender y cuantificar el impacto de la adición de solutos sobre las propiedades físicas del solvente, y demuestran la utilidad de los conceptos termodinámicos en la interpretación de fenómenos cotidianos y en el diseño de procesos industriales.
+\end{itemize}
+
+\renewcommand{\refname}{Bibliografía}
+\printbibliography
+\end{document}

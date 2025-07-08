@@ -1,0 +1,211 @@
+\documentclass{beamer}
+
+\usetheme{Madrid} % Puedes elegir otro tema si lo prefieres, por ejemplo, AnnArbor, Boadilla, CambridgeUS, Copenhagen, Darmstadt, Goettingen, Ilmenau, JuanLesPins, Marburg, Montpellier, PaloAlto, Rochester, Singapore, Warsaw.
+\usecolortheme{beaver} % Un tema de colores, por ejemplo, albatross, beaver, crane, dolphin, lily, orchid, rose, seagull, seahorse, whale, wolverine.
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx} % Para incluir imágenes si fuera necesario
+\usepackage{ragged2e} % Para justificar texto si se desea
+
+\title{Ecuaciones de Maxwell para Campos Acoplados y Método de Momentos 1D}
+\author{Juan Sebastian Sierra Jaraba}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\section{Introducción}
+\begin{frame}{Introducción}
+    \begin{itemize}
+        \item Exploración de las ecuaciones de Maxwell para medios con acoplamiento magneto-eléctrico.
+        \item Simplificación a un régimen armónico y un problema unidimensional.
+        \item Introducción del concepto de corrientes equivalentes.
+        \item Aplicación del Método de Momentos (MoM) con colocación puntual para la resolución numérica.
+    \end{itemize}
+\end{frame}
+
+\section{Ecuaciones Fundamentales y Constitutivas}
+\begin{frame}{Ecuaciones de Maxwell Fundamentales}
+    Las ecuaciones de Maxwell en forma diferencial:
+    \begin{itemize}
+        \item Ley de Gauss ($\mathbf{D}$): $\nabla \cdot D = \rho$
+        \item Ley de Gauss ($\mathbf{B}$): $\nabla \cdot B = 0$
+        \item Ley de Faraday: $\nabla \times E = -\frac{\partial B}{\partial t}$
+        \item Ley de Ampere-Maxwell: $\nabla \times H = J + \frac{\partial D}{\partial t}$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Relaciones Constitutivas y Régimen Armónico}
+    Relaciones constitutivas para acoplamiento magneto-eléctrico:
+    $$D = \epsilon E + i\chi H$$
+    $$B = \mu H + i\chi E$$
+    En régimen armónico ($\frac{\partial}{\partial t} \rightarrow -i\omega$):
+    \begin{itemize}
+        \item $\epsilon (\nabla \cdot E) + i\chi (\nabla \cdot H) = \rho$
+        \item $\mu (\nabla \cdot H) + i\chi (\nabla \cdot E) = 0$
+        \item $\nabla \times E + \omega\chi E = i\omega\mu H$
+        \item $\nabla \times H - \omega\chi H = J - i\omega\epsilon E$
+    \end{itemize}
+\end{frame}
+
+\section{Simplificación del Problema}
+\begin{frame}{Anulación de Fuentes y Simplificación 1D}
+    Anulando fuentes ($\rho = 0, J = 0$):
+    \begin{itemize}
+        \item $\nabla \cdot E = 0$
+        \item $\nabla \cdot H = 0$
+    \end{itemize}
+    Para dependencia solo en $z$ ($\frac{\partial}{\partial x} = 0, \frac{\partial}{\partial y} = 0$) y ondas transversales ($E_z=0, H_z=0$):
+    \begin{align*}
+        -\frac{\partial E_y}{\partial z} + \omega\chi E_x &= i\omega\mu H_x \\
+        \frac{\partial E_x}{\partial z} + \omega\chi E_y &= i\omega\mu H_y \\
+        -\frac{\partial H_y}{\partial z} - \omega\chi H_x &= -i\omega\epsilon E_x \\
+        \frac{\partial H_x}{\partial z} - \omega\chi H_y &= -i\omega\epsilon E_y
+    \end{align*}
+\end{frame}
+
+\section{Corrientes Equivalentes}
+\begin{frame}{Definición de Corrientes Equivalentes}
+    Asumiendo $\epsilon = \epsilon_0$ y $\mu = \mu_0$:
+    \begin{align*}
+        J &= \omega\chi H \\
+        K &= \omega\chi E
+    \end{align*}
+    Separando campos incidente ($inc$) y disperso ($sca$): $E = E^{inc} + E^{sca}$, $H = H^{inc} + H^{sca}$.
+    \begin{align*}
+        J &= \omega\chi H^{inc} + \omega\chi H^{sca} \\
+        K &= \omega\chi E^{inc} + \omega\chi E^{sca}
+    \end{align*}
+    Los términos con campos incidentes son las "fuentes" conocidas.
+\end{frame}
+
+\begin{frame}{Ecuaciones Integrales para los Campos Dispersos}
+    Los campos dispersos son generados por $J$ y $K$ en el espacio libre.
+    \begin{align*}
+        E^{sca}(z) &= \int_{V'} \left( i\omega\mu_0 J(z') - \nabla' \times K(z') \right) G(z, z') dz' \\
+        H^{sca}(z) &= \int_{V'} \left( i\omega\epsilon_0 K(z') + \nabla' \times J(z') \right) G(z, z') dz'
+    \end{align*}
+    Donde $G(z, z') = \frac{e^{ik_0|z-z'|}}{2ik_0}$ es la función de Green 1D.
+\end{frame}
+
+\begin{frame}{Ecuaciones Integrales para los Campos Dispersos}
+    Expresando campos incidentes en función de corrientes y campos dispersos:
+    \begin{align*}
+        E^{inc}(z) &= \frac{K(z)}{\omega\chi} - E^{sca}(z) \\
+        H^{inc}(z) &= \frac{J(z)}{\omega\chi} - H^{sca}(z)
+    \end{align*}
+    Sustituyendo las integrales de $E^{sca}$ y $H^{sca}$:
+    \begin{align*}
+        E^{inc}(z) &= \frac{K(z)}{\omega\chi} - \int_{V'} \left( i\omega\mu_0 J(z') - \nabla' \times K(z') \right) G(z, z') dz' \\
+        H^{inc}(z) &= \frac{J(z)}{\omega\chi} - \int_{V'} \left( i\omega\epsilon_0 K(z') + \nabla' \times J(z') \right) G(z, z') dz'
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Funciones Base Triangulares}
+    Las funciones triangulares $t_n(z)$ se utilizan como funciones base para expandir las corrientes:
+    \[
+    t_n(z) = 
+    \begin{cases}
+        1 - \left| \dfrac{z - z_n}{\Delta z} \right|, & \text{si } |z - z_n| < \Delta z \\
+        0, & \text{en otro caso}
+    \end{cases}
+    \]
+    \begin{itemize}
+        \item $z_n$ es la posición del nodo $n$.
+        \item $\Delta z$ es el espaciamiento entre nodos.
+        \item Cada $t_n(z)$ es una función que vale 1 en $z_n$ y decrece linealmente a 0 en $z_n \pm \Delta z$.
+    \end{itemize}
+    Estas funciones permiten aproximar cualquier corriente dentro del dispersor como una combinación lineal de funciones locales.
+\end{frame}
+
+
+\section{Método de Momentos (MoM)}
+\begin{frame}{MoM y Discretización}
+    Expandimos las corrientes $J(z)$ y $K(z)$ en funciones base triangulares $t_n(z)$ sobre el dispersor ($0 < z < a$):
+    $$J(z) \approx \sum_{n=0}^{N} J_n t_n(z)$$
+    $$K(z) \approx \sum_{n=0}^{N} K_n t_n(z)$$
+    Donde $z_n = n\Delta z$ y $\Delta z = a/N$.
+\end{frame}
+
+\begin{frame}{Ponderación por Colocación Puntual (Point Matching)}
+    Las ecuaciones integrales se evalúan en puntos discretos $z_m$ (los nodos):
+    \begin{align*}
+        E_x^{inc}(z_m) &= \frac{1}{\omega\chi} K_x(z_m) - \sum_{n=0}^{N} J_x(z_n) \int_{V'} (i\omega\mu_0) t_n(z') G(z_m, z') dz' \\
+        &\quad + \sum_{n=0}^{N} K_y(z_n) \int_{V'} \frac{\partial t_n(z')}{\partial z'} G(z_m, z') dz' \\[1em]
+        H_y^{inc}(z_m) &= \frac{1}{\omega\chi} J_x(z_m) - \sum_{n=0}^{N} K_y(z_n) \int_{V'} (i\omega\epsilon_0) t_n(z') G(z_m, z') dz' \\
+        &\quad - \sum_{n=0}^{N} J_x(z_n) \int_{V'} \frac{\partial t_n(z')}{\partial z'} G(z_m, z') dz'
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Ecuaciones para $E_y^{inc}$ y $H_x^{inc}$}
+    De manera análoga, las ecuaciones para los otros componentes son:
+    \begin{align*}
+        E_y^{inc}(z_m) &= \frac{1}{\omega\chi} K_y(z_m) - \sum_{n=0}^{N} J_y(z_n) \int_{V'} (i\omega\mu_0) t_n(z') G(z_m, z') dz' \\
+        &\quad - \sum_{n=0}^{N} K_x(z_n) \int_{V'} \frac{\partial t_n(z')}{\partial z'} G(z_m, z') dz' \\[1em]
+        H_x^{inc}(z_m) &= \frac{1}{\omega\chi} J_y(z_m) - \sum_{n=0}^{N} K_x(z_n) \int_{V'} (i\omega\epsilon_0) t_n(z') G(z_m, z') dz' \\
+        &\quad + \sum_{n=0}^{N} J_y(z_n) \int_{V'} \frac{\partial t_n(z')}{\partial z'} G(z_m, z') dz'
+    \end{align*}
+    Estas ecuaciones, junto con las anteriores, completan el sistema para todos los componentes relevantes.
+\end{frame}
+
+\begin{frame}{Aproximación de las Integrales}
+    Las integrales se aproximan por la regla del punto medio:
+    \begin{align*}
+        \int_{V'} t_n(z') G(z_m, z') dz' &\approx \frac{\Delta z}{2} \left[ G(z_m, z_n - \Delta z/2) + G(z_m, z_n + \Delta z/2) \right] \\
+        \int_{V'} \frac{\partial t_n(z')}{\partial z'} G(z_m, z') dz' &\approx \left[ G(z_m, z_n - \Delta z/2) - G(z_m, z_n + \Delta z/2) \right]
+    \end{align*}
+    donde $z_n = n\Delta z$ y se asume $t_n(z')$ centrada en $z_n$.
+\end{frame}
+
+\begin{frame}{Aproximación de las Integrales}
+    \begin{align*}
+        G_{m,n}^{-} &= G(z_m, z_n - \Delta z/2) \\
+        G_{m,n}^{+} &= G(z_m, z_n + \Delta z/2)
+    \end{align*}
+    \begin{align*}
+        \int_{V'} t_n(z') G(z_m, z') dz' &\approx \frac{\Delta z}{2} \left[ G_{m,n}^{-} + G_{m,n}^{+} \right] \\
+        \int_{V'} \frac{\partial t_n(z')}{\partial z'} G(z_m, z') dz' &\approx \left[ G_{m,n}^{-} - G_{m,n}^{+} \right]
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Ecuaciones Finales Discretizadas (Con Integrales Aproximadas)}
+    Reemplazando las integrales por sus aproximaciones, las ecuaciones para los campos en los nodos $z_m$ quedan:
+    \begin{align*}
+        E_x^{inc}(z_m) &= \frac{1}{\omega\chi} K_x(z_m) - \sum_{n=0}^{N} J_x(z_n) \left[ \frac{i\omega\mu_0 \Delta z}{2} (G_{m,n}^{-} + G_{m,n}^{+}) \right] \\
+        &\quad + \sum_{n=0}^{N} K_y(z_n) \left[ G_{m,n}^{-} - G_{m,n}^{+} \right] \\[1em]
+        H_y^{inc}(z_m) &= \frac{1}{\omega\chi} J_x(z_m) - \sum_{n=0}^{N} K_y(z_n) \left[ \frac{i\omega\epsilon_0 \Delta z}{2} (G_{m,n}^{-} + G_{m,n}^{+}) \right] \\
+        &\quad - \sum_{n=0}^{N} J_x(z_n) \left[ G_{m,n}^{-} - G_{m,n}^{+} \right] \\[2em]
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Ecuaciones Finales Discretizadas (Con Integrales Aproximadas)}
+    \begin{align*}
+        E_y^{inc}(z_m) &= \frac{1}{\omega\chi} K_y(z_m) - \sum_{n=0}^{N} J_y(z_n) \left[ \frac{i\omega\mu_0 \Delta z}{2} (G_{m,n}^{-} + G_{m,n}^{+}) \right] \\
+        &\quad - \sum_{n=0}^{N} K_x(z_n) \left[ G_{m,n}^{-} - G_{m,n}^{+} \right] \\[1em]
+        H_x^{inc}(z_m) &= \frac{1}{\omega\chi} J_y(z_m) - \sum_{n=0}^{N} K_x(z_n) \left[ \frac{i\omega\epsilon_0 \Delta z}{2} (G_{m,n}^{-} + G_{m,n}^{+}) \right] \\
+        &\quad + \sum_{n=0}^{N} J_y(z_n) \left[ G_{m,n}^{-} - G_{m,n}^{+} \right]
+    \end{align*}
+    donde $G_{m,n}^{\pm} = G(z_m, z_n \pm \Delta z/2)$.
+\end{frame}
+
+
+\begin{frame}{Sistema de Ecuaciones Lineales Final}
+    El sistema final es:
+    $$[Z][I] = [V]$$
+    \begin{itemize}
+        \item $[I]$: Corrientes desconocidas en cada nodo.
+        \item $[V]$: Campos incidentes en los nodos.
+        \item $[Z]$: Matriz que describe la interacción entre nodos.
+    \end{itemize}
+    Al resolver $[Z][I] = [V]$ se obtienen las corrientes equivalentes y los campos resultantes.
+\end{frame}
+
+
+\end{document}
